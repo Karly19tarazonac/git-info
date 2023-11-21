@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QApplication,QMainWindow, QDialog, QMessageBox, QFileDialog;
+from log_in import Ui_inicio_de_sesion
 from PyQt5.uic import loadUi;
 import os
 from PyQt5.QtGui import QPixmap
