@@ -11,6 +11,10 @@ class Coordinador(object):
         self.__mi_sistema = sistema
     def validar_usuario(self, u, p):
         return self.__mi_sistema.verificarUsuario(u,p)
+    def img_conextion(self, imagen):
+        self.__mi_sistema.pictureMaker(imagen)
+    def dcm_info(self,imagen):
+        return self.__mi_sistema.leerDicom(imagen)
     
 #esta clase no cambia ya que en esta simplemente se hacen las conexiones que siempre van
 class Principal(object):
