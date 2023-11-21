@@ -16,7 +16,7 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>870</x>
+     <x>730</x>
      <y>570</y>
      <width>311</width>
      <height>41</height>
@@ -45,7 +45,7 @@
   <widget class="QSlider" name="hslider">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>270</x>
      <y>580</y>
      <width>451</width>
      <height>31</height>
@@ -53,6 +53,12 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="tickPosition">
+    <enum>QSlider::TicksBelow</enum>
+   </property>
+   <property name="tickInterval">
+    <number>5</number>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -71,6 +77,19 @@
    </property>
    <property name="text">
     <string>0</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="log_out">
+   <property name="geometry">
+    <rect>
+     <x>1070</x>
+     <y>580</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Log Out</string>
    </property>
   </widget>
  </widget>

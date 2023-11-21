@@ -61,6 +61,7 @@ class VentanaBuscarCarpeta(QDialog):
         self.browse.clicked.connect(self.browsefiles)
         self.buttonBox.accepted.connect(self.abrirVentanaVisualizacion)
         self.buttonBox.rejected.connect(self.cerrar)
+        self.log_out.clicked.connect(self.logout)
 
     def browsefiles(self):
         carpeta=QFileDialog.getExistingDirectory(self,"Open File")
@@ -80,6 +81,10 @@ class VentanaBuscarCarpeta(QDialog):
 
     def recibir_imagen2(self,imagen):
         return self.__ventanaPadre.recibir_imagen2(imagen)
+    
+    def logout(self):
+        self.__ventanaPadre.show()
+        self.hide()
 
 class VentanaVisualizacion(QDialog):
     def __init__(self, ppal=None):
@@ -93,6 +98,7 @@ class VentanaVisualizacion(QDialog):
         self.cargar()
         self.buttonBox.rejected.connect(self.cerrar)
         self.hslider.valueChanged.connect(self.slider)
+        self.log_out.clicked.connect(self.logout)
 
     def slider(self,value):
         self.file_number=value
@@ -100,7 +106,11 @@ class VentanaVisualizacion(QDialog):
 
     def cargar(self):
         folder=self.__ventanaPadre.folder
-        archivos = os.listdir(folder)
+        try:
+            archivos = os.listdir(folder)
+        except:
+            self.label.setText("ERROR: Escoge Otra Carpeta")
+            return
         slider_max= len(archivos)-1
         self.hslider.setMaximum(slider_max)
         filename = archivos[self.file_number]
@@ -114,4 +124,8 @@ class VentanaVisualizacion(QDialog):
 
     def cerrar(self):
         self.__ventanaPadre.show()
+
+    def logout(self):
+        self.__ventanaPadre.cerrar()
+        self.hide()
 
