@@ -39,3 +39,46 @@ class Ventanaprincipal(QMainWindow):
             msg.setText("Usuario no Valido")
         #se muestra la ventana
         msg.show()
+
+    def abrirVentanaBuscarCarpeta(self):
+        ventana_browse=VentanaBuscarCarpeta(self)
+        self.hide()
+        ventana_browse.show()
+
+class VentanaVisualizacion(QDialog):
+    def __init__(self, ppal=None):
+        super().__init__(ppal)
+        loadUi('dialog_dcm.ui',self)
+        self.__ventanaPadre = ppal
+        self.setup()
+
+    def setup(self):
+        self.buttonBox.rejected.connect(self.cerrar)
+
+    def cerrar(self):
+        self.__ventanaPadre.show()
+
+class VentanaBuscarCarpeta(QDialog):
+    def __init__(self, ppal=None):
+        super().__init__(ppal)
+        loadUi('dialog_filesearch.ui',self)
+        self.__ventanaPadre = ppal
+        self.setup()
+
+    def setup(self):
+        self.browse.clicked.connect(self.browsefiles)
+        self.buttonBox.accepted.connect(self.abrirVentanaVisualizacion)
+        self.buttonBox.rejected.connect(self.cerrar)
+
+    def browsefiles(self):
+        archivo=QFileDialog.getExistingDirectory(self,"Open File",r"C:\Users\KarlyJuliana\Desktop\git-info")
+        self.filepath.setText(archivo)
+
+    def cerrar(self):
+        self.__ventanaPadre.show()
+
+    def abrirVentanaVisualizacion(self):
+        ventana_visualizacion=VentanaVisualizacion(self)
+        self.hide()
+        ventana_visualizacion.show()
+
