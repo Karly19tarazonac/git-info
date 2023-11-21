@@ -1,12 +1,6 @@
 from PyQt5.QtWidgets import QApplication,QMainWindow, QDialog, QMessageBox, QFileDialog;
-# from login import setupUi;
-# from log_in import Ui_inicio_de_sesion
 from PyQt5.uic import loadUi;
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from PyQt5 import QtCore
 import os
-import pydicom
 from PyQt5.QtGui import QPixmap
 
 class Ventanaprincipal(QMainWindow):
@@ -15,9 +9,6 @@ class Ventanaprincipal(QMainWindow):
         super(Ventanaprincipal,self).__init__(ppal)
         loadUi("login.ui",self)
         self.setup()
-        self.__carpeta = ""
-        # self.ui=Ui_inicio_de_sesion()
-        # self.ui.setupUi(self)
         
     #metodo para configurar las senales-slots y otros de la interfaz
     
@@ -117,13 +108,6 @@ class VentanaVisualizacion(QDialog):
         pixmap = QPixmap("temp_image.png")
         self.img.setPixmap(pixmap)
         os.remove('temp_image.png')
-        # ds = pydicom.dcmread(imagen)
-        # slice = str(ds["SliceLocation"])
-        # image_type = str(ds["ImageType"])
-        # study_description = str(ds["StudyDescription"])
-        # series_decription = str(ds["SeriesDescription"])
-        # modality = str(ds["Modality"])
-        # dcm_info = f"{filename}\n\n{image_type}\n{study_description}\n{series_decription}\n{modality}\n{slice}"
         dcm_info = self.__ventanaPadre.recibir_imagen2(imagen)
         self.label.setText(f"{filename}\n\n{dcm_info}")
 
